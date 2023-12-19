@@ -1,0 +1,41 @@
+{
+  "name": "playsync",
+  "version": "1.0.0",
+  "description": "Playdate sync app",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "repository": "https://github.com/koyuawsmbrtn/playsync",
+  "author": "Leonie Ain <me@koyu.space>",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^28.0.0",
+    "electron-builder": "^24.9.1"
+  },
+  "build": {
+    "appId": "com.Sommerlichter.playsync",
+    "productName": "PlaySync",
+    "linux": {
+      "target": [
+        "deb"
+      ],
+      "category": "Tools"
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "assets/icon.png"
+    },
+    "mac": {
+      "target": [
+        "dmg"
+      ],
+      "icon": "assets/icon.icns"
+    }
+  }
+}

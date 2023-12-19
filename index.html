@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PlaySync</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./pd-usb.js"></script>
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <h1>PlaySync</h1>
+    </header>
+    <main>
+      <div class="panel">
+        <div class="row">
+          <div class="pull-left">
+            <button onclick="connect()" id="connectButton"> Connect to Playdate </button>
+            <span id="serial"></span>
+          </div>
+        </div>
+      </div>
+      <div class="panel" id="data">
+        Waiting for Playdate...
+      </div>
+    </main>
+    <footer class="row">
+      &copy; 2023 by Leonie<br>
+      This tool is not affiliated with Panic Inc. and comes with no warranty.
+    </footer>
+  </div>
+
+  <script src="./renderer.js"></script>
+</body>
+</html>
