@@ -1,0 +1,22 @@
+{
+  "actions" : {
+    "build" : {
+      "enabled" : true,
+      "postActions" : [
+        {
+          "script" : "yarn dist",
+          "type" : "runScript"
+        }
+      ],
+      "script" : "yarn dev"
+    },
+    "run" : {
+      "postActions" : [
+        {
+          "script" : "yarn dev",
+          "type" : "runScript"
+        }
+      ]
+    }
+  }
+}
