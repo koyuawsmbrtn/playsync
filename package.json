@@ -21,7 +21,9 @@
     "productName": "PlaySync",
     "linux": {
       "target": [
-        "deb"
+        "deb",
+        "pacman",
+        "rpm"
       ],
       "category": "Tools"
     },
