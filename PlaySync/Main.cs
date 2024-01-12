@@ -510,6 +510,75 @@ namespace PlaySync
                                             }
                                         }
                                     }
+                                    foreach (string subfolder in Directory.GetDirectories(folder))
+                                    {
+                                        string subfolderName = subfolder.Replace(folder + "\\", "");
+                                        if (!Directory.Exists(Path.Combine(playdatedrive, "Games", gameName, folderName, subfolderName)))
+                                        {
+                                            Directory.CreateDirectory(Path.Combine(playdatedrive, "Games", gameName, folderName, subfolderName));
+                                        }
+                                        foreach (string file in Directory.GetFiles(subfolder))
+                                        {
+                                            string fileName = file.Replace(subfolder + "\\", "");
+                                            if (!File.Exists(Path.Combine(playdatedrive, "Games", gameName, folderName, subfolderName, fileName)))
+                                            {
+                                                File.Copy(file, Path.Combine(playdatedrive, "Games", gameName, folderName, subfolderName, fileName));
+                                            }
+                                            else
+                                            {
+                                                if (File.GetLastWriteTime(file) > File.GetLastWriteTime(Path.Combine(playdatedrive, "Games", gameName, folderName, subfolderName, fileName)))
+                                                {
+                                                    File.Copy(file, Path.Combine(playdatedrive, "Games", gameName, folderName, subfolderName, fileName), true);
+                                                }
+                                            }
+                                        }
+                                        foreach (string subsubfolder in Directory.GetDirectories(subfolder))
+                                        {
+                                            string subsubfolderName = subsubfolder.Replace(subfolder + "\\", "");
+                                            if (!Directory.Exists(Path.Combine(playdatedrive, "Games", gameName, folderName, subfolderName, subsubfolderName)))
+                                            {
+                                                Directory.CreateDirectory(Path.Combine(playdatedrive, "Games", gameName, folderName, subfolderName, subsubfolderName));
+                                            }
+                                            foreach (string file in Directory.GetFiles(subsubfolder))
+                                            {
+                                                string fileName = file.Replace(subsubfolder + "\\", "");
+                                                if (!File.Exists(Path.Combine(playdatedrive, "Games", gameName, folderName, subfolderName, subsubfolderName, fileName)))
+                                                {
+                                                    File.Copy(file, Path.Combine(playdatedrive, "Games", gameName, folderName, subfolderName, subsubfolderName, fileName));
+                                                }
+                                                else
+                                                {
+                                                    if (File.GetLastWriteTime(file) > File.GetLastWriteTime(Path.Combine(playdatedrive, "Games", gameName, folderName, subfolderName, subsubfolderName, fileName)))
+                                                    {
+                                                        File.Copy(file, Path.Combine(playdatedrive, "Games", gameName, folderName, subfolderName, subsubfolderName, fileName), true);
+                                                    }
+                                                }
+                                            }
+                                            foreach (string subsubsubfolder in Directory.GetDirectories(subsubfolder))
+                                            {
+                                                string subsubsubfolderName = subsubsubfolder.Replace(subsubfolder + "\\", "");
+                                                if (!Directory.Exists(Path.Combine(playdatedrive, "Games", gameName, folderName, subfolderName, subsubfolderName, subsubsubfolderName)))
+                                                {
+                                                    Directory.CreateDirectory(Path.Combine(playdatedrive, "Games", gameName, folderName, subfolderName, subsubfolderName, subsubsubfolderName));
+                                                }
+                                                foreach (string file in Directory.GetFiles(subsubsubfolder))
+                                                {
+                                                    string fileName = file.Replace(subsubsubfolder + "\\", "");
+                                                    if (!File.Exists(Path.Combine(playdatedrive, "Games", gameName, folderName, subfolderName, subsubfolderName, subsubsubfolderName, fileName)))
+                                                    {
+                                                        File.Copy(file, Path.Combine(playdatedrive, "Games", gameName, folderName, subfolderName, subsubfolderName, subsubsubfolderName, fileName));
+                                                    }
+                                                    else
+                                                    {
+                                                        if (File.GetLastWriteTime(file) > File.GetLastWriteTime(Path.Combine(playdatedrive, "Games", gameName, folderName, subfolderName, subsubfolderName, subsubsubfolderName, fileName)))
+                                                        {
+                                                            File.Copy(file, Path.Combine(playdatedrive, "Games", gameName, folderName, subfolderName, subsubfolderName, subsubsubfolderName, fileName), true);
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
                                 }
                             }
                             catch { }
