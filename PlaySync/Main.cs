@@ -394,7 +394,16 @@ namespace PlaySync
                         }
                     }
                 }
-                if (sendSerial(port, "help") != "") {
+                string[] ports = SerialPort.GetPortNames();
+                bool isavailable = false;
+                foreach (string sport in ports)
+                {
+                    if (port == sport)
+                    {
+                        isavailable = true;
+                    }
+                }
+                if (isavailable) {
                     return port;
                 } else
                 {
