@@ -7,10 +7,11 @@ using System.Diagnostics;
 using System.Net;
 using System.IO.Ports;
 using System.Threading;
-using System.Diagnostics.Eventing.Reader;
 using System.Collections.Generic;
 using RuFramework;
 using System.Runtime.InteropServices;
+using System.Text.RegularExpressions;
+using Microsoft.Win32;
 
 namespace PlaySync
 {
@@ -97,7 +98,7 @@ namespace PlaySync
             serialPort.Parity = Parity.None;
             serialPort.StopBits = StopBits.One;
             serialPort.DataBits = 8;
-            serialPort.ReadTimeout = 100;
+            serialPort.ReadTimeout = 20;
             try
             {
                 serialPort.Open();
@@ -116,9 +117,9 @@ namespace PlaySync
                 }
 
             }
-            catch (Exception ex)
+            catch
             {
-                return ex.Message;
+                return "";
             }
             finally
             {
@@ -202,11 +203,6 @@ namespace PlaySync
             readGames(gamefolder);
         }
 
-        private void Main_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Application.Exit();
-        }
-
         private void button7_Click(object sender, EventArgs e)
         {
             listBox1.Items.Clear();
@@ -233,10 +229,10 @@ namespace PlaySync
                 //button5.Enabled = true;
                 //button2.Enabled = true;
                 //button8.Enabled = true;
-                readDeviceToolStripMenuItem.Enabled = true;
-                readDeviceToolStripMenuItem1.Enabled = true;
+                //readDeviceToolStripMenuItem.Enabled = true;
+                //readDeviceToolStripMenuItem1.Enabled = true;
                 toDeviceToolStripMenuItem.Enabled = true;
-                fromDeviceToolStripMenuItem.Enabled = true;
+                //fromDeviceToolStripMenuItem.Enabled = true;
             }
             else
             {
@@ -279,28 +275,13 @@ namespace PlaySync
 
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
         {
-            ejectPlaydate();
-            try
-            {
-                Directory.Delete(tempfolder, true);
-            } catch { }
-            if (syncing)
-            {
-                MessageBox.Show("Cannot close window. Device is syncing.", "Device is syncing", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                e.Cancel = true;
-            }
+            e.Cancel = true;
+            this.Hide();
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (syncing)
-            {
-                MessageBox.Show("Cannot close window. Device is syncing.", "Device is syncing", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                Application.Exit();
-            }
+            Quit();
         }
 
         private void readLocalToolStripMenuItem_Click(object sender, EventArgs e)
@@ -386,20 +367,36 @@ namespace PlaySync
         {
             try
             {
-                string[] ports = SerialPort.GetPortNames();
-                string sports = "";
-                foreach (string port in ports)
+                string port = "";
+                string VID = "1331";
+                string PID = "5740";
+                String pattern = String.Format("^VID_{0}.PID_{1}", VID, PID);
+                Regex _rx = new Regex(pattern, RegexOptions.IgnoreCase);
+                RegistryKey rk1 = Registry.LocalMachine;
+                RegistryKey rk2 = rk1.OpenSubKey("SYSTEM\\CurrentControlSet\\Enum");
+                foreach (String s3 in rk2.GetSubKeyNames())
                 {
-                    if (port != "COM1" && port != "COM3")
+                    RegistryKey rk3 = rk2.OpenSubKey(s3);
+                    foreach (String s in rk3.GetSubKeyNames())
                     {
-                        sports += port + "\n";
+                        if (_rx.Match(s).Success)
+                        {
+                            RegistryKey rk4 = rk3.OpenSubKey(s);
+                            foreach (String s2 in rk4.GetSubKeyNames())
+                            {
+                                RegistryKey rk5 = rk4.OpenSubKey(s2);
+                                RegistryKey rk6 = rk5.OpenSubKey("Device Parameters");
+                                if (rk6.GetValue("PortName") != null)
+                                {
+                                    port = rk6.GetValue("PortName").ToString();
+                                }
+                            }
+                        }
                     }
                 }
-                if (sports != "")
-                {
-                    return sports.Split('\n')[0];
-                }
-                else
+                if (sendSerial(port, "help") != "") {
+                    return port;
+                } else
                 {
                     return "";
                 }
@@ -822,9 +819,27 @@ namespace PlaySync
                     handle = USBEject(driveletter);
                     Eject(handle);
                     syncing = false;
+                    showPluggedUI();
                 }
             }
             catch { }
+        }
+
+        private void Quit()
+        {
+            if (!syncing)
+            {
+                ejectPlaydate();
+                try
+                {
+                    Directory.Delete(tempfolder, true);
+                }
+                catch { }
+                Environment.Exit(0);
+            } else
+            {
+                MessageBox.Show("Cannot close window. Device is syncing.", "Device is syncing", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -833,6 +848,7 @@ namespace PlaySync
             {
                 if (getPlaydatePort() != "" && pluggedin == false)
                 {
+                    this.Show();
                     string versioninfo = sendSerial(getPlaydatePort(), "version");
                     string battery = sendSerial(getPlaydatePort(), "batpct");
                     string version = "";
@@ -911,8 +927,9 @@ namespace PlaySync
 
         private void beforeAction()
         {
-            syncing = true;
             ejectPlaydate();
+            syncing = true;
+            showPluggedUI();
             dataDiskMode();
             Thread.Sleep(1000);
             cansync = true;
@@ -1113,6 +1130,26 @@ namespace PlaySync
             {
                 ejectPlaydate();
             }
+        }
+
+        private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            this.Show();
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Quit();
+        }
+
+        private void Main_Load(object sender, EventArgs e)
+        {
+            notifyIcon1.ContextMenuStrip = contextMenuStrip1;
+        }
+
+        private void toDeviceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            button4_Click(sender, e);
         }
     }
 }

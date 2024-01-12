@@ -62,6 +62,7 @@
             this.synchronizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toDeviceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fromDeviceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.diskModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.playSyncToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -72,13 +73,16 @@
             this.getSerialPortsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.simulateSyncToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button3 = new System.Windows.Forms.Button();
-            this.diskModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.menuStrip1.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -336,7 +340,7 @@
             this.readLocalToolStripMenuItem,
             this.readDeviceToolStripMenuItem});
             this.foldersToolStripMenuItem.Name = "foldersToolStripMenuItem";
-            this.foldersToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.foldersToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.foldersToolStripMenuItem.Text = "Folders";
             // 
             // readLocalToolStripMenuItem
@@ -359,7 +363,7 @@
             this.readLocalToolStripMenuItem1,
             this.readDeviceToolStripMenuItem1});
             this.saveFilesToolStripMenuItem.Name = "saveFilesToolStripMenuItem";
-            this.saveFilesToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.saveFilesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveFilesToolStripMenuItem.Text = "Save files";
             // 
             // readLocalToolStripMenuItem1
@@ -382,15 +386,16 @@
             this.toDeviceToolStripMenuItem,
             this.fromDeviceToolStripMenuItem});
             this.synchronizeToolStripMenuItem.Name = "synchronizeToolStripMenuItem";
-            this.synchronizeToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.synchronizeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.synchronizeToolStripMenuItem.Text = "Synchronize";
             // 
             // toDeviceToolStripMenuItem
             // 
             this.toDeviceToolStripMenuItem.Enabled = false;
             this.toDeviceToolStripMenuItem.Name = "toDeviceToolStripMenuItem";
-            this.toDeviceToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.toDeviceToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.toDeviceToolStripMenuItem.Text = "To Device";
+            this.toDeviceToolStripMenuItem.Click += new System.EventHandler(this.toDeviceToolStripMenuItem_Click);
             // 
             // fromDeviceToolStripMenuItem
             // 
@@ -399,10 +404,17 @@
             this.fromDeviceToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.fromDeviceToolStripMenuItem.Text = "From Device";
             // 
+            // diskModeToolStripMenuItem
+            // 
+            this.diskModeToolStripMenuItem.Name = "diskModeToolStripMenuItem";
+            this.diskModeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.diskModeToolStripMenuItem.Text = "Toggle Disk Mode";
+            this.diskModeToolStripMenuItem.Click += new System.EventHandler(this.diskModeToolStripMenuItem_Click);
+            // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -482,12 +494,27 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click_1);
             // 
-            // diskModeToolStripMenuItem
+            // notifyIcon1
             // 
-            this.diskModeToolStripMenuItem.Name = "diskModeToolStripMenuItem";
-            this.diskModeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.diskModeToolStripMenuItem.Text = "Toggle Disk Mode";
-            this.diskModeToolStripMenuItem.Click += new System.EventHandler(this.diskModeToolStripMenuItem_Click);
+            this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
+            this.notifyIcon1.Text = "PlaySync";
+            this.notifyIcon1.Visible = true;
+            this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseDoubleClick);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(94, 26);
+            this.contextMenuStrip1.Text = "PlaySync";
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem1.Text = "Exit";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // Main
             // 
@@ -521,7 +548,7 @@
             this.Name = "Main";
             this.Text = "PlaySync";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_FormClosing);
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Main_FormClosed);
+            this.Load += new System.EventHandler(this.Main_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
@@ -529,6 +556,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -578,5 +606,8 @@
         private System.Windows.Forms.ToolStripMenuItem simulateSyncToolStripMenuItem;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.ToolStripMenuItem diskModeToolStripMenuItem;
+        private System.Windows.Forms.NotifyIcon notifyIcon1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
     }
 }
