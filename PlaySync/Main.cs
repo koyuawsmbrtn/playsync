@@ -12,6 +12,7 @@ using RuFramework;
 using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 using Microsoft.Win32;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace PlaySync
 {
@@ -24,7 +25,9 @@ namespace PlaySync
         bool pluggedin = false;
         bool syncing = false;
         bool cansync = false;
-        string version = "1";
+        bool updateshown = false;
+        bool autostart = false;
+        string version = "2";
         string oldtext = "";
         string deviceinfo = "";
         string[] games;
@@ -74,7 +77,6 @@ namespace PlaySync
                 toolStripMenuItem2.Checked = false;
             }
             string[] args = Environment.GetCommandLineArgs();
-            bool autostart = false;
             foreach (string arg in args)
             {
                 if (arg == "--autostart")
@@ -83,26 +85,6 @@ namespace PlaySync
                     this.ShowInTaskbar = false;
                     this.WindowState = FormWindowState.Minimized;
                 }
-            }
-            if (!autostart)
-            {
-                try
-                {
-                    string pubv = new WebClient().DownloadString("https://updates.koyu.space/playsync/latest");
-                    if (pubv.Split('\n')[0] != version)
-                    {
-                        DialogResult result = MessageBox.Show("New update available. Download now?", "New update available", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                        if (result == DialogResult.Yes)
-                        {
-                            launchUrl("https://updates.koyu.space/playsync/playsync.zip");
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("PlaySync is up to date!", "Up to date", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                }
-                catch { }
             }
         }
 
@@ -1211,6 +1193,27 @@ namespace PlaySync
                 Environment.Exit(0);
             }
             notifyIcon1.ContextMenuStrip = contextMenuStrip1;
+            if (!autostart && !updateshown)
+            {
+                updateshown = true;
+                try
+                {
+                    string pubv = new WebClient().DownloadString("https://updates.koyu.space/playsync/latest");
+                    if (pubv.Split('\n')[0] != version)
+                    {
+                        Thread t = new Thread(() => {
+                                DialogResult result = MessageBox.Show("New update available. Download now?", "New update available", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                if (result == DialogResult.Yes)
+                                {
+                                    launchUrl("https://updates.koyu.space/playsync/playsync.zip");
+                                }
+                            }
+                        );
+                        t.Start();
+                    }
+                }
+                catch { }
+            }
         }
 
         private void toDeviceToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1231,7 +1234,7 @@ namespace PlaySync
                 else
                 {
                     RegistryKey rk = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
-                    rk.SetValue("PlaySync", "\"" + Application.ExecutablePath + "\" --autostart");
+                    rk.SetValue("PlaySync", "\"" + System.Windows.Forms.Application.ExecutablePath + "\" --autostart");
                     toolStripMenuItem2.Checked = true;
                 }
             }
