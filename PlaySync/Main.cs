@@ -12,7 +12,6 @@ using RuFramework;
 using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 using Microsoft.Win32;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace PlaySync
 {
@@ -27,7 +26,7 @@ namespace PlaySync
         bool cansync = false;
         bool updateshown = false;
         bool autostart = false;
-        string version = "2";
+        string version = "3";
         string oldtext = "";
         string deviceinfo = "";
         string[] games;
@@ -887,6 +886,8 @@ namespace PlaySync
             {
                 if (getPlaydatePort() != "" && pluggedin == false)
                 {
+                    this.ShowInTaskbar = true;
+                    this.WindowState = FormWindowState.Normal;
                     this.Show();
                     string versioninfo = sendSerial(getPlaydatePort(), "version");
                     string battery = sendSerial(getPlaydatePort(), "batpct");
@@ -1234,7 +1235,7 @@ namespace PlaySync
                 else
                 {
                     RegistryKey rk = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
-                    rk.SetValue("PlaySync", "\"" + System.Windows.Forms.Application.ExecutablePath + "\" --autostart");
+                    rk.SetValue("PlaySync", "\"" + Application.ExecutablePath + "\" --autostart");
                     toolStripMenuItem2.Checked = true;
                 }
             }
