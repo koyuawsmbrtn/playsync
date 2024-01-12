@@ -60,6 +60,28 @@ namespace PlaySync
                 debugToolStripMenuItem.Visible = true;
             }
             this.Text = title;
+            if (isDebug)
+            {
+                toolStripMenuItem2.Visible = false;
+            }
+            RegistryKey rk = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+            if (rk.GetValue("PlaySync") != null)
+            {
+                toolStripMenuItem2.Checked = true;
+            }
+            else
+            {
+                toolStripMenuItem2.Checked = false;
+            }
+            string[] args = Environment.GetCommandLineArgs();
+            foreach (string arg in args)
+            {
+                if (arg == "--autostart")
+                {
+                    this.ShowInTaskbar = false;
+                    this.WindowState = FormWindowState.Minimized;
+                }
+            }
         }
 
         private void readGames(string readfolder)
@@ -128,7 +150,8 @@ namespace PlaySync
                     try
                     {
                         serialPort.Close();
-                    } catch { }
+                    }
+                    catch { }
                 }
             }
             /*
@@ -403,9 +426,11 @@ namespace PlaySync
                         isavailable = true;
                     }
                 }
-                if (isavailable) {
+                if (isavailable)
+                {
                     return port;
-                } else
+                }
+                else
                 {
                     return "";
                 }
@@ -845,7 +870,8 @@ namespace PlaySync
                 }
                 catch { }
                 Environment.Exit(0);
-            } else
+            }
+            else
             {
                 MessageBox.Show("Cannot close window. Device is syncing.", "Device is syncing", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -1117,9 +1143,10 @@ namespace PlaySync
                         }
                     }
                 }
-                launchUrl("explorer.exe "+tempfolder);
+                launchUrl("explorer.exe " + tempfolder);
                 ejectPlaydate();
-            } catch { }
+            }
+            catch { }
         }
 
         private void diskModeToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1135,7 +1162,8 @@ namespace PlaySync
             if (drivename == "")
             {
                 dataDiskMode();
-            } else
+            }
+            else
             {
                 ejectPlaydate();
             }
@@ -1143,6 +1171,8 @@ namespace PlaySync
 
         private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
+            this.ShowInTaskbar = true;
+            this.WindowState = FormWindowState.Normal;
             this.Show();
         }
 
@@ -1153,12 +1183,37 @@ namespace PlaySync
 
         private void Main_Load(object sender, EventArgs e)
         {
+            Process[] pname = Process.GetProcessesByName("PlaySync");
+            if (pname.Length > 1)
+            {
+                Environment.Exit(0);
+            }
             notifyIcon1.ContextMenuStrip = contextMenuStrip1;
         }
 
         private void toDeviceToolStripMenuItem_Click(object sender, EventArgs e)
         {
             button4_Click(sender, e);
+        }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (toolStripMenuItem2.Checked)
+                {
+                    RegistryKey rk = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+                    rk.DeleteValue("PlaySync", false);
+                    toolStripMenuItem2.Checked = false;
+                }
+                else
+                {
+                    RegistryKey rk = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+                    rk.SetValue("PlaySync", "\"" + Application.ExecutablePath + "\" --autostart");
+                    toolStripMenuItem2.Checked = true;
+                }
+            }
+            catch { }
         }
     }
 }

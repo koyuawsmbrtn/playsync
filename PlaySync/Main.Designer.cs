@@ -75,6 +75,7 @@
             this.button3 = new System.Windows.Forms.Button();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -340,7 +341,7 @@
             this.readLocalToolStripMenuItem,
             this.readDeviceToolStripMenuItem});
             this.foldersToolStripMenuItem.Name = "foldersToolStripMenuItem";
-            this.foldersToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.foldersToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.foldersToolStripMenuItem.Text = "Folders";
             // 
             // readLocalToolStripMenuItem
@@ -363,7 +364,7 @@
             this.readLocalToolStripMenuItem1,
             this.readDeviceToolStripMenuItem1});
             this.saveFilesToolStripMenuItem.Name = "saveFilesToolStripMenuItem";
-            this.saveFilesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveFilesToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.saveFilesToolStripMenuItem.Text = "Save files";
             // 
             // readLocalToolStripMenuItem1
@@ -386,14 +387,14 @@
             this.toDeviceToolStripMenuItem,
             this.fromDeviceToolStripMenuItem});
             this.synchronizeToolStripMenuItem.Name = "synchronizeToolStripMenuItem";
-            this.synchronizeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.synchronizeToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.synchronizeToolStripMenuItem.Text = "Synchronize";
             // 
             // toDeviceToolStripMenuItem
             // 
             this.toDeviceToolStripMenuItem.Enabled = false;
             this.toDeviceToolStripMenuItem.Name = "toDeviceToolStripMenuItem";
-            this.toDeviceToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.toDeviceToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.toDeviceToolStripMenuItem.Text = "To Device";
             this.toDeviceToolStripMenuItem.Click += new System.EventHandler(this.toDeviceToolStripMenuItem_Click);
             // 
@@ -407,14 +408,14 @@
             // diskModeToolStripMenuItem
             // 
             this.diskModeToolStripMenuItem.Name = "diskModeToolStripMenuItem";
-            this.diskModeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.diskModeToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.diskModeToolStripMenuItem.Text = "Toggle Disk Mode";
             this.diskModeToolStripMenuItem.Click += new System.EventHandler(this.diskModeToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -504,10 +505,18 @@
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem2,
             this.toolStripMenuItem1});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(94, 26);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(167, 48);
             this.contextMenuStrip1.Text = "PlaySync";
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem2.Text = "Launch at startup";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
             // toolStripMenuItem1
             // 
@@ -609,5 +618,6 @@
         private System.Windows.Forms.NotifyIcon notifyIcon1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
     }
 }
