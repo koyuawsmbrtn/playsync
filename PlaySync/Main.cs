@@ -26,7 +26,7 @@ namespace PlaySync
         bool cansync = false;
         bool updateshown = false;
         bool autostart = false;
-        string version = "3";
+        string version = "4";
         string oldtext = "";
         string deviceinfo = "";
         string[] games;
