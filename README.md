@@ -15,5 +15,6 @@ Source code for the Playdate sync tool
 - Initial setup
 - Serial interfacing
 - Syncing games to the device
+- Screenshot manager
 
 **Note: this is third-party software that comes without any warranty and is not endorsed or supported by Panic. If your Playdate breaks while using the software we are not responsible for any damages and your device's warranty will be voided.**

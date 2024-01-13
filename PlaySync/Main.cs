@@ -26,7 +26,7 @@ namespace PlaySync
         bool cansync = false;
         bool updateshown = false;
         bool autostart = false;
-        string version = "4";
+        string version = "5";
         string oldtext = "";
         string deviceinfo = "";
         string[] games;
@@ -1148,7 +1148,8 @@ namespace PlaySync
                         }
                     }
                 }
-                launchUrl("explorer.exe " + tempfolder);
+                ScreenshotViewer screenshotViewer = new ScreenshotViewer();
+                screenshotViewer.ShowDialog();
                 ejectPlaydate();
             }
             catch { }

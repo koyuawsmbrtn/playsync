@@ -99,6 +99,12 @@
     <Compile Include="SampleRuProgressBar1.cs">
       <SubType>Windows</SubType>
     </Compile>
+    <Compile Include="ScreenshotViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ScreenshotViewer.Designer.cs">
+      <DependentUpon>ScreenshotViewer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Setup.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -113,6 +119,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RuProgressBar\ProgressWindow.resx">
       <DependentUpon>ProgressWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScreenshotViewer.resx">
+      <DependentUpon>ScreenshotViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Setup.resx">
       <DependentUpon>Setup.cs</DependentUpon>

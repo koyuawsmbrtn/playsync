@@ -49,8 +49,6 @@
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.label4 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.foldersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -115,7 +113,7 @@
             this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox2.Location = new System.Drawing.Point(0, 24);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(1031, 481);
+            this.pictureBox2.Size = new System.Drawing.Size(1031, 504);
             this.pictureBox2.TabIndex = 10;
             this.pictureBox2.TabStop = false;
             // 
@@ -130,7 +128,7 @@
             this.label5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(41)))), ((int)(((byte)(41)))));
             this.label5.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
-            this.label5.Location = new System.Drawing.Point(0, 478);
+            this.label5.Location = new System.Drawing.Point(0, 501);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(1031, 27);
             this.label5.TabIndex = 17;
@@ -140,10 +138,14 @@
             // 
             // listBox1
             // 
+            this.listBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(41)))), ((int)(((byte)(41)))));
+            this.listBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(174)))), ((int)(((byte)(167)))));
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(12, 184);
+            this.listBox1.Location = new System.Drawing.Point(12, 176);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(604, 173);
+            this.listBox1.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.listBox1.Size = new System.Drawing.Size(602, 247);
             this.listBox1.TabIndex = 18;
             // 
             // label2
@@ -162,7 +164,7 @@
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
-            this.button1.Location = new System.Drawing.Point(12, 363);
+            this.button1.Location = new System.Drawing.Point(85, 433);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(116, 23);
             this.button1.TabIndex = 20;
@@ -176,7 +178,7 @@
             this.button2.FlatAppearance.BorderSize = 0;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
-            this.button2.Location = new System.Drawing.Point(134, 363);
+            this.button2.Location = new System.Drawing.Point(207, 433);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(116, 23);
             this.button2.TabIndex = 21;
@@ -190,7 +192,7 @@
             this.button4.FlatAppearance.BorderSize = 0;
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
-            this.button4.Location = new System.Drawing.Point(85, 407);
+            this.button4.Location = new System.Drawing.Point(85, 466);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(116, 23);
             this.button4.TabIndex = 23;
@@ -202,7 +204,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(183)))), ((int)(((byte)(56)))));
-            this.label3.Location = new System.Drawing.Point(8, 412);
+            this.label3.Location = new System.Drawing.Point(8, 471);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(71, 13);
             this.label3.TabIndex = 24;
@@ -214,7 +216,7 @@
             this.button5.FlatAppearance.BorderSize = 0;
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
-            this.button5.Location = new System.Drawing.Point(207, 407);
+            this.button5.Location = new System.Drawing.Point(207, 466);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(116, 23);
             this.button5.TabIndex = 25;
@@ -227,7 +229,7 @@
             this.button7.FlatAppearance.BorderSize = 0;
             this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
-            this.button7.Location = new System.Drawing.Point(256, 363);
+            this.button7.Location = new System.Drawing.Point(329, 433);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(116, 23);
             this.button7.TabIndex = 27;
@@ -241,7 +243,7 @@
             this.button8.FlatAppearance.BorderSize = 0;
             this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
-            this.button8.Location = new System.Drawing.Point(378, 363);
+            this.button8.Location = new System.Drawing.Point(451, 433);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(116, 23);
             this.button8.TabIndex = 28;
@@ -254,7 +256,7 @@
             this.pictureBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(41)))), ((int)(((byte)(41)))));
             this.pictureBox3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox3.BackgroundImage")));
             this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox3.Location = new System.Drawing.Point(620, 186);
+            this.pictureBox3.Location = new System.Drawing.Point(620, 176);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(157, 246);
             this.pictureBox3.TabIndex = 29;
@@ -264,7 +266,7 @@
             // pictureBox4
             // 
             this.pictureBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox4.Location = new System.Drawing.Point(620, 186);
+            this.pictureBox4.Location = new System.Drawing.Point(620, 176);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(397, 246);
             this.pictureBox4.TabIndex = 30;
@@ -273,7 +275,10 @@
             // richTextBox1
             // 
             this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.richTextBox1.Location = new System.Drawing.Point(785, 193);
+            this.richTextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(41)))), ((int)(((byte)(41)))));
+            this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(174)))), ((int)(((byte)(167)))));
+            this.richTextBox1.Location = new System.Drawing.Point(785, 183);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(222, 232);
             this.richTextBox1.TabIndex = 31;
@@ -283,33 +288,11 @@
             // 
             this.pictureBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox5.ImageLocation = "zzz";
-            this.pictureBox5.Location = new System.Drawing.Point(620, 186);
+            this.pictureBox5.Location = new System.Drawing.Point(620, 176);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(157, 246);
             this.pictureBox5.TabIndex = 32;
             this.pictureBox5.TabStop = false;
-            // 
-            // linkLabel1
-            // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(183)))), ((int)(((byte)(56)))));
-            this.linkLabel1.Location = new System.Drawing.Point(97, 450);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(78, 13);
-            this.linkLabel1.TabIndex = 33;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Get yours now!";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(183)))), ((int)(((byte)(56)))));
-            this.label4.Location = new System.Drawing.Point(8, 450);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(92, 13);
-            this.label4.TabIndex = 34;
-            this.label4.Text = "Need a Playdate?";
             // 
             // menuStrip1
             // 
@@ -432,21 +415,21 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // checkForUpdatesToolStripMenuItem
             // 
             this.checkForUpdatesToolStripMenuItem.Name = "checkForUpdatesToolStripMenuItem";
-            this.checkForUpdatesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.checkForUpdatesToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
             this.checkForUpdatesToolStripMenuItem.Text = "Check for updates";
             this.checkForUpdatesToolStripMenuItem.Click += new System.EventHandler(this.checkForUpdatesToolStripMenuItem_Click);
             // 
             // visitKoyuspaceToolStripMenuItem
             // 
             this.visitKoyuspaceToolStripMenuItem.Name = "visitKoyuspaceToolStripMenuItem";
-            this.visitKoyuspaceToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.visitKoyuspaceToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
             this.visitKoyuspaceToolStripMenuItem.Text = "Visit koyu.space";
             this.visitKoyuspaceToolStripMenuItem.Click += new System.EventHandler(this.visitKoyuspaceToolStripMenuItem_Click);
             // 
@@ -487,11 +470,11 @@
             this.button3.FlatAppearance.BorderSize = 0;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
-            this.button3.Location = new System.Drawing.Point(329, 407);
+            this.button3.Location = new System.Drawing.Point(329, 466);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(116, 23);
             this.button3.TabIndex = 37;
-            this.button3.Text = "Show screenshots";
+            this.button3.Text = "Manage screenshots";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click_1);
             // 
@@ -530,10 +513,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(41)))), ((int)(((byte)(41)))));
-            this.ClientSize = new System.Drawing.Size(1031, 505);
+            this.ClientSize = new System.Drawing.Size(1031, 528);
+            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.button3);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.pictureBox5);
             this.Controls.Add(this.richTextBox1);
@@ -545,7 +527,6 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label5);
@@ -591,8 +572,6 @@
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.PictureBox pictureBox5;
-        private System.Windows.Forms.LinkLabel linkLabel1;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem playSyncToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
