@@ -26,7 +26,7 @@ namespace PlaySync
         bool cansync = false;
         bool updateshown = false;
         bool autostart = false;
-        string version = "5";
+        string version = "6";
         string oldtext = "";
         string deviceinfo = "";
         string[] games;
@@ -252,6 +252,7 @@ namespace PlaySync
                 pictureBox3.Visible = true;
                 pictureBox1.Visible = false;
                 button4.Enabled = true;
+                button3.Enabled = true;
                 //button5.Enabled = true;
                 //button2.Enabled = true;
                 //button8.Enabled = true;
@@ -259,6 +260,7 @@ namespace PlaySync
                 //readDeviceToolStripMenuItem1.Enabled = true;
                 toDeviceToolStripMenuItem.Enabled = true;
                 //fromDeviceToolStripMenuItem.Enabled = true;
+                manageScreenshotsToolStripMenuItem.Enabled = true;
             }
             else
             {
@@ -266,6 +268,7 @@ namespace PlaySync
                 pictureBox3.Visible = false;
                 pictureBox1.Visible = true;
                 button4.Enabled = false;
+                button3.Enabled = false;
                 button5.Enabled = false;
                 button2.Enabled = false;
                 button8.Enabled = false;
@@ -273,6 +276,7 @@ namespace PlaySync
                 readDeviceToolStripMenuItem1.Enabled = false;
                 toDeviceToolStripMenuItem.Enabled = false;
                 fromDeviceToolStripMenuItem.Enabled = false;
+                manageScreenshotsToolStripMenuItem.Enabled = false;
             }
             if (syncing)
             {
@@ -1119,35 +1123,6 @@ namespace PlaySync
             try
             {
                 beforeAction();
-                string drivename = "";
-                foreach (var item in System.IO.DriveInfo.GetDrives())
-                {
-                    if (item.VolumeLabel == "PLAYDATE")
-                    {
-                        drivename = item.Name;
-                    }
-                }
-                string screenshotfolder = Path.Combine(drivename, "Screenshots");
-                tempfolder = Path.Combine(Path.GetTempPath(), "PlaySync");
-                if (!Directory.Exists(tempfolder))
-                {
-                    Directory.CreateDirectory(tempfolder);
-                }
-                foreach (string file in Directory.GetFiles(screenshotfolder))
-                {
-                    string fileName = file.Replace(screenshotfolder + "\\", "");
-                    if (!File.Exists(Path.Combine(tempfolder, fileName)))
-                    {
-                        File.Copy(file, Path.Combine(tempfolder, fileName));
-                    }
-                    else
-                    {
-                        if (File.GetLastWriteTime(file) > File.GetLastWriteTime(Path.Combine(tempfolder, fileName)))
-                        {
-                            File.Copy(file, Path.Combine(tempfolder, fileName), true);
-                        }
-                    }
-                }
                 ScreenshotViewer screenshotViewer = new ScreenshotViewer();
                 screenshotViewer.ShowDialog();
                 ejectPlaydate();
@@ -1241,6 +1216,11 @@ namespace PlaySync
                 }
             }
             catch { }
+        }
+
+        private void manageScreenshotsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            button3_Click_1(sender, e);
         }
     }
 }

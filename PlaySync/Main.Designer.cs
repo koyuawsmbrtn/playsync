@@ -75,6 +75,7 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.manageScreenshotsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -313,6 +314,7 @@
             this.saveFilesToolStripMenuItem,
             this.synchronizeToolStripMenuItem,
             this.diskModeToolStripMenuItem,
+            this.manageScreenshotsToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
@@ -467,6 +469,7 @@
             // 
             // button3
             // 
+            this.button3.Enabled = false;
             this.button3.FlatAppearance.BorderSize = 0;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
@@ -507,6 +510,14 @@
             this.toolStripMenuItem1.Size = new System.Drawing.Size(166, 22);
             this.toolStripMenuItem1.Text = "Exit";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            // 
+            // manageScreenshotsToolStripMenuItem
+            // 
+            this.manageScreenshotsToolStripMenuItem.Enabled = false;
+            this.manageScreenshotsToolStripMenuItem.Name = "manageScreenshotsToolStripMenuItem";
+            this.manageScreenshotsToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
+            this.manageScreenshotsToolStripMenuItem.Text = "Manage screenshots";
+            this.manageScreenshotsToolStripMenuItem.Click += new System.EventHandler(this.manageScreenshotsToolStripMenuItem_Click);
             // 
             // Main
             // 
@@ -598,5 +609,6 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem manageScreenshotsToolStripMenuItem;
     }
 }
