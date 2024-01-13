@@ -6,7 +6,7 @@ Source code for the Playdate sync tool
 
 - First plug in wizard that asks you if you want to download your current games to your local library
 - Perhaps itch.io integration if I get that working
-- Syncing games from the device to the local library
+- Syncing games from the device library to the local library
 - Save game backups and restore
 
 ## Already done
