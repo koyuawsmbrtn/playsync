@@ -26,7 +26,7 @@ namespace PlaySync
         bool cansync = false;
         bool updateshown = false;
         bool autostart = false;
-        string version = "6";
+        string version = "7";
         string oldtext = "";
         string deviceinfo = "";
         string[] games;
@@ -123,7 +123,7 @@ namespace PlaySync
             serialPort.Parity = Parity.None;
             serialPort.StopBits = StopBits.One;
             serialPort.DataBits = 8;
-            serialPort.ReadTimeout = 20;
+            serialPort.ReadTimeout = 1000;
             try
             {
                 serialPort.Open();
@@ -654,93 +654,7 @@ namespace PlaySync
 
         private void syncFromDevice(object callback)
         {
-            try
-            {
-                IProgressCallback progress = callback as IProgressCallback;
-                if (cansync)
-                {
-                    string gamefolder = config["paths"]["gamefolder"];
-                    string playdatedrive = "";
-                    foreach (var item in System.IO.DriveInfo.GetDrives())
-                    {
-                        if (item.VolumeLabel == "PLAYDATE")
-                        {
-                            playdatedrive = item.Name;
-                        }
-                    }
-                    if (playdatedrive != "")
-                    {
-                        string[] folders = Directory.GetDirectories(playdatedrive);
-                        foreach (string folder in folders)
-                        {
-                            if (folder.Contains("User") || folder.Contains("Seasons") || folder.Contains("Purchased"))
-                            {
-                                try
-                                {
-                                    string folderName = folder.Replace(playdatedrive, "");
-                                    if (!Directory.Exists(Path.Combine(gamefolder, folderName)))
-                                    {
-                                        Directory.CreateDirectory(Path.Combine(gamefolder, folderName));
-                                    }
-                                    foreach (string file in Directory.GetFiles(folder))
-                                    {
-                                        string fileName = file.Replace(folder + "\\", "");
-                                        if (!File.Exists(Path.Combine(gamefolder, folderName, fileName)))
-                                        {
-                                            File.Copy(file, Path.Combine(gamefolder, folderName, fileName));
-                                        }
-                                        else
-                                        {
-                                            if (File.GetLastWriteTime(file) > File.GetLastWriteTime(Path.Combine(gamefolder, folderName, fileName)))
-                                            {
-                                                File.Copy(file, Path.Combine(gamefolder, folderName, fileName), true);
-                                            }
-                                        }
-                                    }
-                                    foreach (string subfolder in Directory.GetDirectories(folder))
-                                    {
-                                        string subfolderName = subfolder.Replace(folder + "\\", "");
-                                        if (!Directory.Exists(Path.Combine(gamefolder, folderName, subfolderName)))
-                                        {
-                                            Directory.CreateDirectory(Path.Combine(gamefolder, folderName, subfolderName));
-                                        }
-                                        foreach (string file in Directory.GetFiles(subfolder))
-                                        {
-                                            string fileName = file.Replace(subfolder + "\\", "");
-                                            if (!File.Exists(Path.Combine(gamefolder, folderName, subfolderName, fileName)))
-                                            {
-                                                File.Copy(file, Path.Combine(gamefolder, folderName, subfolderName, fileName));
-                                            }
-                                            else
-                                            {
-                                                if (File.GetLastWriteTime(file) > File.GetLastWriteTime(Path.Combine(gamefolder, folderName, subfolderName, fileName)))
-                                                {
-                                                    File.Copy(file, Path.Combine(gamefolder, folderName, subfolder));
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                                catch { }
-                            }
-                        }
-                    }
-                }
-                progress.End();
-                ejectPlaydate();
-                BeginInvoke(new Action(() =>
-                {
-                    this.Text = title;
-                }));
-            }
-            catch
-            {
-                ejectPlaydate();
-                BeginInvoke(new Action(() =>
-                {
-                    this.Text = title;
-                }));
-            }
+            throw new NotImplementedException();
         }
 
         [DllImport("kernel32.dll", SetLastError = true, CharSet = CharSet.Auto)]
@@ -836,11 +750,6 @@ namespace PlaySync
         {
             uint byteReturned;
             return DeviceIoControl(handle, IOCTL_STORAGE_EJECT_MEDIA, IntPtr.Zero, 0, IntPtr.Zero, 0, out byteReturned, IntPtr.Zero);
-        }
-
-        private bool CloseVolume(IntPtr handle)
-        {
-            return CloseHandle(handle);
         }
 
         private void ejectPlaydate()
